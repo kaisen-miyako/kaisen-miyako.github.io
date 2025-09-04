@@ -3,6 +3,7 @@ import { StrictMode } from "react";
 import { routeTree } from "./routeTree.gen";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import washi from "./washi.module.scss";
 
 const theme = createTheme({
   typography: {
@@ -22,9 +23,11 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <StrictMode>
-        <RouterProvider router={router} />
-      </StrictMode>
+      <div className={washi.washiBg}>
+        <StrictMode>
+          <RouterProvider router={router} />
+        </StrictMode>
+      </div>
     </ThemeProvider>
   );
 }

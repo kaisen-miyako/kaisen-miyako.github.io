@@ -1,0 +1,277 @@
+.featureWashiBox {
+  background: url('../imgs/background.png') center/cover no-repeat #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #0a254044;
+  padding: 32px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 340px;
+  margin: 24px auto;
+}
+.featureTitleTextWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.featureDivider {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, #bfa76f 0%, #e6d3b3 100%);
+  border-radius: 2px;
+  margin: 0 auto;
+}
+.featureTitleDividerWrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.featureDivider {
+  display: inline-block;
+  width: 2px;
+  height: 48px;
+  background: linear-gradient(to bottom, #bfa76f 0%, #e6d3b3 100%);
+  border-radius: 2px;
+}
+.snsBoxCustom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin: 40px auto 0 auto;
+}
+.snsIconCustom {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #e6d3b3;
+  background: #fff;
+  padding: 6px;
+  box-shadow: 0 2px 8px #0a254044;
+  object-fit: contain;
+  transition: transform 0.2s;
+}
+.snsIconCustom:hover {
+  transform: scale(1.12);
+}
+.topContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+  background: #0a2540; /* 紺ベース */
+  color: #e6d3b3;
+}
+
+/* ヒーロー部分 */
+.heroSection {
+  width: 100%;
+  height: 55vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.heroSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10,37,64,0.45);
+}
+.heroSection .title {
+  margin: 0 0 40px 60px;
+  font-size: 3.6em;
+  color: #e6d3b3;
+  letter-spacing: 0.15em;
+  background: rgba(10, 37, 64, 0.327);
+  padding: 20px 10px;
+  border-radius: 14px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  z-index: 2;
+}
+
+/* 紹介部分 */
+.introBox {
+  background: none;
+  padding: 60px 40px;
+  max-width: 780px;
+  line-height: 2.2;
+  text-align: center;
+}
+.introText {
+  font-size: 1.25em;
+  letter-spacing: 0.08em;
+  margin-bottom: 40px;
+}
+
+/* ギャラリー */
+.gallerySection {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.galleryImgSmall {
+  width: 130px;
+  height: 95px;
+  border-radius: 12px;
+  border: 1.5px solid #e6d3b3;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.35);
+  transition: transform 0.2s;
+}
+.galleryImgSmall:hover {
+  transform: scale(1.05);
+}
+
+/* 特徴セクション */
+.heroFeatureSection {
+  width: 100%;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  margin: 0 0 32px 0;
+  display: flex;
+  align-items: center;
+}
+.heroFeatureSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 37, 64, 0.125);
+}
+.heroFeatureContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  z-index: 2;
+}
+.featureFeatureContent {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  padding: 0 48px;
+  gap: 15px;
+}
+.featureFeatureContentAnago {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  padding: 0 48px;
+}
+.featureFeatureText {
+  max-width: 340px;
+  font-size: 1.12em;
+  color: #222;
+  background: url('../imgs/background.png') center/cover no-repeat #fff;
+  padding: 16px 18px;
+  border-radius: 12px;
+  text-align: left;
+  line-height: 1.8;
+  white-space: pre-line;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  margin: 10px;
+  box-shadow: 0 2px 12px #0a254044;
+}
+.featureFeatureTitle {
+  font-weight: bold;
+  font-size: 1.25em;
+  color: #222;
+  margin-bottom: 8px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: 'NINJAL', 'IPAmj Mincho', 'Shippori Mincho', 'Noto Serif JP', serif;
+}
+.featureFeatureImg {
+  width: 220px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px #0a254044;
+  border: 2px solid #e6d3b3;
+}
+
+/* タイトル縦書き */
+.featureTitleVertical {
+  margin: 0;
+  font-size: 2.2em;
+  color: #e6d3b3;
+  background: rgba(10,37,64,0.65);
+  padding: 12px 8px;
+  border-radius: 10px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+  line-height: 1.3;
+}
+
+/* 説明文（縦書きのまま右側に置く場合） */
+.featureTextVertical {
+  font-size: 1.05em;
+  color: #fdf9f3;
+  background: rgba(10,37,64,0.55);
+  padding: 10px 14px;
+  border-radius: 10px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  line-height: 1.6;
+}
+
+
+/* 店舗情報 */
+.infoBox {
+  margin-top: 20px;
+  font-size: 1.12em;
+  line-height: 1.8;
+  border-top: 1px solid #e6d3b3;
+  padding-top: 22px;
+  text-align: left;
+}
+
+/* SNS */
+.snsBox {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+}
+.snsLink img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #e6d3b3;
+  background: #fff;
+  padding: 4px;
+  transition: transform 0.2s;
+}
+.snsLink img:hover {
+  transform: scale(1.15);
+}

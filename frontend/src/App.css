@@ -1,50 +1,59 @@
+
 .App {
-  max-width: 600px;
+  max-width: 900px;
   margin: 40px auto;
-  padding: 20px;
-  font-family: sans-serif;
+  padding: 32px;
+  font-family: 'Shippori Mincho', 'Noto Serif JP', 'serif';
   text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #f7f4e9;
+  border: 2px solid #bfa76f;
+  border-radius: 0.5em;
+  box-shadow: 0 2px 12px rgba(191,167,111,0.08);
 }
+
 
 .message-list ul {
   list-style-type: none;
   padding: 0;
 }
 
+
 .message-list li {
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
-  padding: 10px;
+  background-color: #f7f4e9;
+  border: 1px solid #bfa76f;
+  padding: 12px;
   margin-bottom: 8px;
-  border-radius: 4px;
+  border-radius: 0.5em;
   text-align: left;
 }
+
 
 .message-form {
   display: flex;
   margin-top: 20px;
 }
 
+
 .message-form input {
   flex-grow: 1;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #bfa76f;
+  border-radius: 0.5em;
+  background: #f7f4e9;
 }
+
 
 .message-form button {
   padding: 10px 15px;
   margin-left: 10px;
   border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
+  background-color: #bfa76f;
+  color: #fff;
+  border-radius: 0.5em;
   cursor: pointer;
+  font-family: 'Shippori Mincho', 'Noto Serif JP', 'serif';
 }
 
 .message-form button:hover {
-  background-color: #0056b3;
+  background-color: #a68c5b;
 }

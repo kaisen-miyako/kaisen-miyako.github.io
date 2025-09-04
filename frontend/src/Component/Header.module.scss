@@ -1,3 +1,4 @@
+
 .header{
     position: sticky;
     top: 0px;
@@ -8,10 +9,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-right: 24px;
+    z-index: 9999;
 }
+
 
 .tab{
     display: flex;
-    margin-right: 20px;
     gap: 20px;
 }
