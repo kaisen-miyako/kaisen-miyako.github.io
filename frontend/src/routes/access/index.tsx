@@ -1,6 +1,6 @@
-import washi from "../../washi.module.scss";
+import wholebackground from "../../imgs/wholebackground.png";
+import styles from "../index.module.scss";
 import { createFileRoute } from "@tanstack/react-router";
-import { Typography } from "@mui/material";
 
 export const Route = createFileRoute("/access/")({
   component: RouteComponent,
@@ -8,7 +8,10 @@ export const Route = createFileRoute("/access/")({
 
 function RouteComponent() {
   return (
-    <div className={washi.washiBg}>
+    <div className={styles.topContainer}>
+      <div className={styles.rotatedBg}>
+        <img src={wholebackground} alt="背景" />
+      </div>
       <div
         style={{
           maxWidth: 900,
@@ -17,8 +20,18 @@ function RouteComponent() {
           fontFamily: "Shippori Mincho, Noto Serif JP, serif",
         }}
       >
-        <h1 style={{ textAlign: "center", marginBottom: 32 }}>アクセス</h1>
-        <p style={{ marginBottom: 24, fontSize: "1.1em" }}>
+        <h1
+          style={{
+            textAlign: "center",
+            marginBottom: 32,
+            color: "#bfa76f",
+            fontWeight: "bold",
+            letterSpacing: "0.08em",
+          }}
+        >
+          アクセス
+        </h1>
+        <p style={{ marginBottom: 24, fontSize: "1.1em", color: "#4c3a1e" }}>
           <strong>海鮮みやこ</strong>は、東京都文京区本郷にある、
           <br />
           豊洲市場直送の新鮮な海鮮料理が自慢の和食店です。
@@ -34,7 +47,7 @@ function RouteComponent() {
             style={{ border: 0, borderRadius: 8 }}
           ></iframe>
         </div>
-        <div style={{ fontSize: "1.05em", lineHeight: 1.7 }}>
+        <div style={{ fontSize: "1.05em", lineHeight: 1.7, color: "#4c3a1e" }}>
           <strong>住所：</strong>東京都文京区本郷2-4-5
           <br />
           <strong>アクセス：</strong>都営三田線水道橋駅A1出口より徒歩約6分

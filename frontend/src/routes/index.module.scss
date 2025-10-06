@@ -64,14 +64,43 @@
   flex-direction: column;
   align-items: center;
   font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
-  background: #0a2540; /* 紺ベース */
   color: #e6d3b3;
+  /* 紺色背景を削除し、背景画像のみ */
+  position: relative;
+  width: 100%;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+.rotatedBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+.rotatedBg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* ヒーロー部分 */
 .heroSection {
   width: 100%;
-  height: 55vh;
+  height: 40vh;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -83,14 +112,27 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(10,37,64,0.45);
+  background: rgba(10, 37, 64, 0.294);
+}
+.heroSection::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(180deg, transparent 0%, rgba(239, 232, 220, 0.4) 30%, rgba(239, 232, 220, 0.8) 70%, rgba(239, 232, 220, 1.0) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 .heroSection .title {
-  margin: 0 0 40px 60px;
-  font-size: 3.6em;
-  color: #e6d3b3;
+  position: absolute;
+  bottom: -180px;
+  left: 60px;
+  margin: 0;
+  font-size: 50px;
+  color: rgb(46, 42, 36);
   letter-spacing: 0.15em;
-  background: rgba(10, 37, 64, 0.327);
   padding: 20px 10px;
   border-radius: 14px;
   writing-mode: vertical-rl;
@@ -101,7 +143,7 @@
 /* 紹介部分 */
 .introBox {
   background: none;
-  padding: 60px 40px;
+  padding: 150px 40px 60px 40px;
   max-width: 780px;
   line-height: 2.2;
   text-align: center;

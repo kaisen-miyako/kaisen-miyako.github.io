@@ -12,13 +12,20 @@ import menu4 from "../../imgs/menu_4.jpg";
 
 // ギャラリー画像を自動取得
 const galleryImages = Object.values(
-  import.meta.glob("../../imgs/menu/**/*.{jpg,JPG,png,PNG}", { eager: true, import: 'default' })
+  import.meta.glob("../../imgs/menu/**/*.{jpg,JPG,png,PNG}", {
+    eager: true,
+    import: "default",
+  })
 );
-import washi from "../../washi.module.scss";
+import wholebackground from "../../imgs/wholebackground.png";
+import styles from "../index.module.scss";
 
 function RouteComponent() {
   return (
-    <div className={washi.washiBg}>
+    <div className={styles.topContainer}>
+      <div className={styles.rotatedBg}>
+        <img src={wholebackground} alt="背景" />
+      </div>
       <div
         style={{
           maxWidth: 900,
@@ -27,15 +34,27 @@ function RouteComponent() {
           fontFamily: "Shippori Mincho, Noto Serif JP, serif",
         }}
       >
-        <h1 style={{ textAlign: "center", marginBottom: 32 }}>お品書き</h1>
-        <p style={{ marginBottom: 24, fontSize: "1.1em" }}>
+        <h1
+          style={{
+            textAlign: "center",
+            marginBottom: 32,
+            color: "#bfa76f",
+            fontWeight: "bold",
+            letterSpacing: "0.08em",
+          }}
+        >
+          お品書き
+        </h1>
+        <p style={{ marginBottom: 24, fontSize: "1.1em", color: "#4c3a1e" }}>
           海鮮みやこでは、店主自ら毎朝豊洲市場で厳選した旬の海鮮を仕入れ、
           <br />
           職人の技で仕上げた逸品料理をご提供しております。名物の活〆穴子や、
           <br />
           天然本まぐろの刺身盛り合わせなど、季節ごとに変わるおすすめ料理をぜひご堪能ください。
         </p>
-        <h2 style={{ marginTop: 32 }}>おすすめ料理</h2>
+        <h2 style={{ marginTop: 32, color: "#bfa76f", fontWeight: "bold" }}>
+          おすすめ料理
+        </h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li style={{ marginBottom: 24 }}>
             <img
@@ -43,7 +62,7 @@ function RouteComponent() {
               alt="厳選コース"
               style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}
             />
-            <div style={{ marginTop: 8 }}>
+            <div style={{ marginTop: 8, color: "#4c3a1e" }}>
               <strong>厳選コース（7品）</strong>
               <br />
               初めてのお客様におすすめ。活〆穴子や旬の海鮮を贅沢に味わえるコースです。
@@ -57,7 +76,7 @@ function RouteComponent() {
               alt="季節の逸品料理"
               style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}
             />
-            <div style={{ marginTop: 8 }}>
+            <div style={{ marginTop: 8, color: "#4c3a1e" }}>
               <strong>季節の逸品料理</strong>
               <br />
               あん肝や白子ポン酢、銀だら西京焼きなど、旬の食材を使った繊細な逸品。
@@ -71,7 +90,7 @@ function RouteComponent() {
               alt="刺身盛り合わせ"
               style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}
             />
-            <div style={{ marginTop: 8 }}>
+            <div style={{ marginTop: 8, color: "#4c3a1e" }}>
               <strong>旬の刺身盛り合わせ</strong>
               <br />
               天然本まぐろや穴子の刺身など、店主が目利きした新鮮な海の幸を盛り合わせで。
@@ -85,7 +104,7 @@ function RouteComponent() {
               alt="穴子丼"
               style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}
             />
-            <div style={{ marginTop: 8 }}>
+            <div style={{ marginTop: 8, color: "#4c3a1e" }}>
               <strong>名物 穴子丼</strong>
               <br />
               ふっくらとした穴子を贅沢に盛り付けた、当店自慢の一品。
@@ -94,7 +113,16 @@ function RouteComponent() {
             </div>
           </li>
         </ul>
-        <h2 style={{ marginTop: 40, marginBottom: 16 }}>料理ギャラリー</h2>
+        <h2
+          style={{
+            marginTop: 40,
+            marginBottom: 16,
+            color: "#bfa76f",
+            fontWeight: "bold",
+          }}
+        >
+          料理ギャラリー
+        </h2>
         <div
           style={{
             display: "flex",

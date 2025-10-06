@@ -19,6 +19,8 @@ import topSub4 from "../imgs/top/NZ6_6489.JPG";
 import topSub5 from "../imgs/top/NZ6_6515 2.JPG";
 const topImages = [topSub1, topSub2, topSub3, topSub4, topSub5];
 
+import wholebackground from "../imgs/wholebackground.png";
+
 function RouteComponent() {
   return (
     <div className={styles.topContainer}>
@@ -28,7 +30,11 @@ function RouteComponent() {
       >
         <h1 className={styles.title}>海鮮みやこ</h1>
       </div>
-      <div className={styles.introBox}>
+      {/* heroSection以下に背景画像を適用 */}
+      <div className={styles.rotatedBg}>
+        <img src={wholebackground} alt="背景" />
+      </div>
+          <div className={styles.introBox}>
         <p className={styles.introText}>
           <span
             style={{
@@ -105,17 +111,17 @@ function RouteComponent() {
           </div>
         </div>
         <div className={styles.infoBox}>
-          <div>
+          <div style={{ color: "#222" }}>
             <strong>住所：</strong>東京都文京区本郷2-4-5 パティオ本郷 102
           </div>
-          <div>
+          <div style={{ color: "#222" }}>
             <strong>電話：</strong>050-5385-5209
           </div>
-          <div>
+          <div style={{ color: "#222" }}>
             <strong>営業時間：</strong>ランチ 11:00～14:30／ディナー
             17:00～22:00
           </div>
-          <div>
+          <div style={{ color: "#222" }}>
             <strong>定休日：</strong>日曜・祝日
           </div>
         </div>
