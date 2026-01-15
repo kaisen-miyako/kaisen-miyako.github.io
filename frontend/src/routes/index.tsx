@@ -1,6 +1,8 @@
 import iconTabelog from "../imgs/icon/taberogu.png";
 import iconInstagram from "../imgs/icon/instagram.png";
 import { createFileRoute } from "@tanstack/react-router";
+import { useTheme, useMediaQuery } from "@mui/material";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -10,7 +12,7 @@ import styles from "./index.module.scss";
 
 import topMain from "../imgs/top/NZ6_6451 2.JPG";
 import topSeafood from "../imgs/top/NZ6_6492.JPG";
-import topAnago from "../imgs/top/NZ6_6495.JPG";
+import topAnago from "../imgs/top/menu_11.jpg";
 import topSpace from "../imgs/top/NZ6_6465.JPG";
 import topSub1 from "../imgs/top/NZ6_6447.JPG";
 import topSub2 from "../imgs/top/NZ6_6477.JPG";
@@ -18,23 +20,109 @@ import topSub3 from "../imgs/top/NZ6_6487.JPG";
 import topSub4 from "../imgs/top/NZ6_6489.JPG";
 import topSub5 from "../imgs/top/NZ6_6515 2.JPG";
 const topImages = [topSub1, topSub2, topSub3, topSub4, topSub5];
+const heroImages = [topMain, ...topImages];
 
 import wholebackground from "../imgs/wholebackground.png";
 
 function RouteComponent() {
+  const theme = useTheme();
+  const isPc = useMediaQuery(theme.breakpoints.up("md"));
+  const [overlayAIndex, setOverlayAIndex] = useState(0);
+  const [overlayBIndex, setOverlayBIndex] = useState(1);
+  const [isAVisible, setIsAVisible] = useState(true);
+  const transitionMs = 1000; // crossfade duration
+  const intervalMs = 10000; // swap every 3s
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const next =
+        ((isAVisible ? overlayAIndex : overlayBIndex) + 1) % heroImages.length;
+      if (isAVisible) {
+        setOverlayBIndex(next);
+      } else {
+        setOverlayAIndex(next);
+      }
+      // toggle visibility to crossfade
+      setIsAVisible((v) => !v);
+    }, intervalMs);
+    return () => clearInterval(interval);
+  }, [isAVisible, overlayAIndex, overlayBIndex]);
+
+  // サムネイルクリックでヒーローを切り替える
+  const setHeroTo = (heroIdx: number) => {
+    const idx = heroIdx % heroImages.length;
+    if (isAVisible) {
+      setOverlayBIndex(idx);
+      setIsAVisible(false);
+    } else {
+      setOverlayAIndex(idx);
+      setIsAVisible(true);
+    }
+  };
+
+  // 要素が画面に入ったときにアニメーションを付与する
+  useEffect(() => {
+    const els = Array.from(
+      document.querySelectorAll('[data-animate="feature"]')
+    ) as HTMLElement[];
+    if (!els.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target as HTMLElement;
+          if (entry.isIntersecting) {
+            el.classList.add(styles.visible);
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className={styles.topContainer}>
-      <div
-        className={styles.heroSection}
-        style={{ backgroundImage: `url(${topMain})` }}
-      >
-        <h1 className={styles.title}>海鮮みやこ</h1>
+      <div className={styles.heroSection} style={{ position: "relative" }}>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${heroImages[overlayAIndex]})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            transition: `opacity ${transitionMs}ms ease`,
+            opacity: isAVisible ? 1 : 0,
+            zIndex: isAVisible ? 1 : 0,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${heroImages[overlayBIndex]})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            transition: `opacity ${transitionMs}ms ease`,
+            opacity: isAVisible ? 0 : 1,
+            zIndex: isAVisible ? 0 : 1,
+          }}
+        />
+        <h1
+          className={styles.title}
+          style={{ position: "relative", zIndex: 2 }}
+        >
+          海鮮みやこ
+        </h1>
       </div>
       {/* heroSection以下に背景画像を適用 */}
       <div className={styles.rotatedBg}>
         <img src={wholebackground} alt="背景" />
       </div>
-          <div className={styles.introBox}>
+      <div className={styles.introBox}>
         <p className={styles.introText}>
           <span
             style={{
@@ -58,16 +146,32 @@ function RouteComponent() {
               alt={`店舗写真${idx + 1}`}
               className={styles.galleryImgSmall}
               key={idx}
+              onClick={() => setHeroTo(idx + 1)}
+              style={{ cursor: "pointer" }}
             />
           ))}
         </div>
-        {/* 特徴3つをheroSection風に分割表示 */}
-        <div
-          className={styles.heroFeatureSection}
-          style={{ backgroundImage: `url(${topSeafood})` }}
-        >
-          <div className={styles.featureFeatureContent}>
-            <div className={styles.featureFeatureText}>
+
+        {/* 特徴1 */}
+        <div className={styles.heroFeatureSection}>
+          <div
+            className={`${isPc ? styles.featureFeatureContent : styles.featureFeatureContentMobile} ${styles.featureAnimate}`}
+            data-animate="feature"
+          >
+            <img
+              src={topSeafood}
+              alt="こだわりの海鮮"
+              className={
+                isPc ? styles.featureFeatureImg : styles.featureFeatureImgMobile
+              }
+            />
+            <div
+              className={
+                isPc
+                  ? styles.featureFeatureText
+                  : styles.featureFeatureTextMobile
+              }
+            >
               <span className={styles.featureFeatureTitle}>こだわりの海鮮</span>
               <br />
               毎朝豊洲市場で
@@ -78,12 +182,25 @@ function RouteComponent() {
             </div>
           </div>
         </div>
-        <div
-          className={styles.heroFeatureSection}
-          style={{ backgroundImage: `url(${topAnago})` }}
-        >
-          <div className={styles.featureFeatureContentAnago}>
-            <div className={styles.featureFeatureText}>
+        <div className={styles.heroFeatureSection}>
+          <div
+            className={`${isPc ? styles.featureFeatureContentAnago : styles.featureFeatureContentAnagoMobile} ${styles.featureAnimate}`}
+            data-animate="feature"
+          >
+            <img
+              src={topAnago}
+              alt="究極の穴子"
+              className={
+                isPc ? styles.featureFeatureImg : styles.featureFeatureImgMobile
+              }
+            />
+            <div
+              className={
+                isPc
+                  ? styles.featureFeatureText
+                  : styles.featureFeatureTextMobile
+              }
+            >
               <span className={styles.featureFeatureTitle}>究極の穴子</span>
               <br />
               穴子は刺身から煮穴子、
@@ -94,15 +211,28 @@ function RouteComponent() {
             </div>
           </div>
         </div>
-        <div
-          className={styles.heroFeatureSection}
-          style={{ backgroundImage: `url(${topSpace})` }}
-        >
-          <div className={styles.featureFeatureContent}>
-            <div className={styles.featureFeatureText}>
+        <div className={styles.heroFeatureSection}>
+          <div
+            className={`${isPc ? styles.featureFeatureContent : styles.featureFeatureContentMobile} ${styles.featureAnimate}`}
+            data-animate="feature"
+          >
+            <img
+              src={topSpace}
+              alt="上質な和空間"
+              className={
+                isPc ? styles.featureFeatureImg : styles.featureFeatureImgMobile
+              }
+            />
+            <div
+              className={
+                isPc
+                  ? styles.featureFeatureText
+                  : styles.featureFeatureTextMobile
+              }
+            >
               <span className={styles.featureFeatureTitle}>上質な和空間</span>
               <br />
-              広々とした店内で、
+              幅々とした店内で、
               <br />
               木の温もりを感じながら
               <br />
@@ -125,6 +255,7 @@ function RouteComponent() {
             <strong>定休日：</strong>日曜・祝日
           </div>
         </div>
+
         <div className={styles.snsBoxCustom}>
           <a
             href="https://tabelog.com/tokyo/A1310/A131003/13299086/"

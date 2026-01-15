@@ -1,67 +1,65 @@
 import styles from "./Header.module.scss";
-import { Button } from "@mui/material";
+import { Button, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import contactLogo from "../imgs/contact_logo.png";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isPc = useMediaQuery(theme.breakpoints.up("sm"));
+  const [open, setOpen] = useState(false);
+
+  const handleNav = (to?: string, external?: string) => {
+    if (to) navigate({ to });
+    if (external) window.location.href = external;
+    setOpen(false);
+  };
+
   return (
     <div className={styles.header}>
       <img src={contactLogo} alt="logo" />
-      <div className={styles.tab}>
-        <Button onClick={() => navigate({ to: "/" })}>
-          <span
-            style={{
-              fontFamily: "Shippori Mincho, Noto Serif JP, serif",
-              color: "#bfa76f",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-            }}
-          >
-            海鮮みやこについて
-          </span>
-        </Button>
-        <Button onClick={() => navigate({ to: "/menu" })}>
-          <span
-            style={{
-              fontFamily: "Shippori Mincho, Noto Serif JP, serif",
-              color: "#bfa76f",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-            }}
-          >
-            お品書き
-          </span>
-        </Button>
-        <Button onClick={() => navigate({ to: "/access" })}>
-          <span
-            style={{
-              fontFamily: "Shippori Mincho, Noto Serif JP, serif",
-              color: "#bfa76f",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-            }}
-          >
-            アクセス
-          </span>
-        </Button>
-        <Button
-          onClick={() =>
-            (window.location.href = "https://kaisenmiyako.owst.jp/")
-          }
-        >
-          <span
-            style={{
-              fontFamily: "Shippori Mincho, Noto Serif JP, serif",
-              color: "#bfa76f",
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-            }}
+      {isPc ? (
+        <div className={styles.tab}>
+          <Button onClick={() => handleNav("/")}>海鮮みやこについて</Button>
+          <Button onClick={() => handleNav("/menu")}>お品書き</Button>
+          <Button onClick={() => handleNav("/access")}>アクセス</Button>
+          <Button
+            onClick={() =>
+              handleNav(undefined, "https://kaisenmiyako.owst.jp/")
+            }
           >
             予約
-          </span>
-        </Button>
-      </div>
+          </Button>
+        </div>
+      ) : (
+        <div className={styles.mobileWrap}>
+          <IconButton
+            aria-label="menu"
+            onClick={() => setOpen((prev) => !prev)}
+            className={styles.menuButton}
+            size="large"
+          >
+            {open ? <CloseIcon /> : <MenuIcon />}
+          </IconButton>
+          {open && (
+            <div className={styles.mobileMenu}>
+              <button onClick={() => handleNav("/")}>海鮮みやこについて</button>
+              <button onClick={() => handleNav("/menu")}>お品書き</button>
+              <button onClick={() => handleNav("/access")}>アクセス</button>
+              <button
+                onClick={() =>
+                  handleNav(undefined, "https://kaisenmiyako.owst.jp/")
+                }
+              >
+                予約
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

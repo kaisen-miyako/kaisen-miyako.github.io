@@ -68,14 +68,57 @@
   /* 紺色背景を削除し、背景画像のみ */
   position: relative;
   width: 100%;
+  padding-top: 84px; /* ヘッダー固定分の余白 */
 }
 
 html, body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+@media (max-width: 900px) {
+  .topContainer {
+    padding-top: 72px; /* モバイルでのヘッダー高さに合わせる */
+  }
+  .heroSection {
+    height: 30vh;
+  }
+
+  .heroSection .title {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    margin: 0;
+    font-size: 26px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    z-index: 2;
+  }
+
+  .introBox {
+    padding: 60px 20px 40px 20px;
+  }
+
+  .featureFeatureTitle {
+    writing-mode: horizontal-tb;
+    font-size: 1.1em;
+    margin-bottom: 6px;
+  }
+
+  .heroFeatureSection {
+    padding: 12px;
+  }
+
+  /* 防止大きな画像や要素で横スクロールが発生する可能性がある要素 */
+  .galleryImgSmall, .featureFeatureImgMobile, .featureFeatureImg, .snsIconCustom {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
 .rotatedBg {
   position: absolute;
@@ -177,20 +220,35 @@ html, body {
 /* 特徴セクション */
 .heroFeatureSection {
   width: 100%;
-  height: 320px;
-  background-size: cover;
-  background-position: center;
+  max-width: 1200px;
+  height: auto;
   position: relative;
-  margin: 0 0 32px 0;
+  margin: 0 auto 32px auto;
   display: flex;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
-.heroFeatureSection::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 37, 64, 0.125);
-}
+
+  /* 入場アニメ用 */
+  .featureAnimate {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 700ms ease, transform 700ms ease;
+    will-change: opacity, transform;
+  }
+
+  .visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .featureAnimate {
+      transition: none;
+      transform: none;
+    }
+  }
 .heroFeatureContent {
   position: absolute;
   top: 50%;
@@ -207,42 +265,78 @@ html, body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  padding: 0 48px;
-  gap: 15px;
+  justify-content: space-between;
+  gap: 20px;
+  box-sizing: border-box;
 }
 .featureFeatureContentAnago {
   width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-end;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  padding: 0 48px;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-sizing: border-box;
 }
 .featureFeatureText {
-  max-width: 340px;
+  flex: 0 0 auto;
+  width: fit-content;
+  min-width: 120px;
   font-size: 1.12em;
   color: #222;
   background: url('../imgs/background.png') center/cover no-repeat #fff;
-  padding: 16px 18px;
+  padding: 12px 14px;
   border-radius: 12px;
   text-align: left;
   line-height: 1.8;
   white-space: pre-line;
   writing-mode: vertical-rl;
   text-orientation: upright;
-  margin: 10px;
   box-shadow: 0 2px 12px #0a254044;
+}
+.featureFeatureContentMobile,
+.featureFeatureContentAnagoMobile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 12px;
+  box-sizing: border-box;
+  background: url('../imgs/background.png') center/cover no-repeat #fff;
+  background-size: cover;
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(10,37,64,0.08);
+  margin: 12px 8px;
+}
+.featureFeatureContentAnagoMobile {
+  flex-direction: column;
+}
+.featureFeatureTextMobile {
+  width: 100%;
+  font-size: 1em;
+  color: #222;
+  background: transparent;
+  padding: 8px 6px;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 1.7;
+  white-space: normal;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+}
+.featureFeatureImgMobile {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 10px;
 }
 .featureFeatureTitle {
   font-weight: bold;
@@ -253,13 +347,32 @@ html, body {
   text-orientation: upright;
   font-family: 'NINJAL', 'IPAmj Mincho', 'Shippori Mincho', 'Noto Serif JP', serif;
 }
+
+@media (max-width: 900px) {
+  .featureFeatureTitle {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    font-size: 1.15em;
+    margin-bottom: 6px;
+  }
+
+  .featureFeatureContentMobile,
+  .featureFeatureContentAnagoMobile {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .introBox {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
 .featureFeatureImg {
-  width: 220px;
-  height: 160px;
+  flex: 0 0 70%;
+  max-width: 500px;
+  aspect-ratio: 1.2;
   object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px #0a254044;
-  border: 2px solid #e6d3b3;
+  border-radius: 0;
 }
 
 /* タイトル縦書き */
@@ -313,6 +426,69 @@ html, body {
   background: #fff;
   padding: 4px;
   transition: transform 0.2s;
+}
+
+/* Menu page styles */
+.menuContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+}
+.menuTitle {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #bfa76f;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+}
+.menuList {
+  list-style: none;
+  padding: 0;
+}
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+.menuItemImg {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(10,37,64,0.08);
+  border: 1.5px solid #e6d3b3;
+}
+.menuItemDesc {
+  width: 100%;
+  max-width: 720px;
+  color: #4c3a1e;
+  text-align: center;
+  background: url('../imgs/background.png') center/cover no-repeat #fff;
+  padding: 12px 14px;
+  border-radius: 10px;
+  line-height: 1.7;
+  box-shadow: 0 4px 16px rgba(10,37,64,0.04);
+}
+.menuGallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 600px) {
+  .menuItemDesc {
+    padding: 10px 12px;
+    font-size: 0.98em;
+  }
+  .menuItemImg {
+    max-width: 100%;
+  }
 }
 .snsLink img:hover {
   transform: scale(1.15);
