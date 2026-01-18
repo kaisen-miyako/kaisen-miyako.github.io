@@ -1,0 +1,9 @@
+.washiBg {
+  min-height: 100vh;
+  background: url('./washi-bg.png'), linear-gradient(135deg, rgba(10,37,64,0.72) 80%, #e6d3b3 100%);
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-repeat: repeat;
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+  color: #222;
+}

@@ -1,0 +1,121 @@
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    height: 84px;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 2px solid #bfa76f;
+    box-shadow: 0 2px 16px #0a254022;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px 0 16px;
+    z-index: 9999;
+    font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+}
+
+.header img {
+    height: 62px;
+    margin-left: 8px;
+    /* 枠・影を削除してシンプルに */
+}
+
+
+.tab {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+.tab button:last-child, .tab .MuiButton-root:last-child {
+    margin-right: 30px !important;
+}
+
+.tab button, .tab .MuiButton-root {
+    font-family: 'Shippori Mincho', 'Noto Serif JP', serif !important;
+    font-size: 1.13em !important;
+    font-weight: 600 !important;
+    color: #bfa76f !important;
+    background: none !important;
+    border-radius: 8px !important;
+    padding: 8px 18px !important;
+    letter-spacing: 0.08em !important;
+    transition: background 0.2s, color 0.2s;
+}
+.tab button:hover, .tab .MuiButton-root:hover {
+    background: #fdf6e3 !important;
+    color: #a88c3c !important;
+}
+
+
+.tab{
+    display: flex;
+    gap: 20px;
+}
+
+.mobileWrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.menuButton {
+    color: #bfa76f !important;
+    border: 2px solid #bfa76f !important;
+    background: #fff !important;
+    border-radius: 10px !important;
+    padding: 6px !important;
+    box-shadow: 0 2px 10px #0a254022;
+}
+
+.mobileMenu {
+    position: absolute;
+    top: 100%;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #bfa76f;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px #0a254044;
+    padding: 12px 14px;
+    z-index: 9999;
+    backdrop-filter: blur(6px);
+    max-width: calc(100% - 24px);
+    box-sizing: border-box;
+    right: 12px;
+}
+
+.mobileMenu button {
+    font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+    font-size: 1.05em;
+    font-weight: 600;
+    color: #bfa76f;
+    background: none;
+    border: none;
+    text-align: right;
+    padding: 10px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.08em;
+}
+
+.mobileMenu button:hover {
+    background: #fdf6e3;
+    color: #a88c3c;
+}
+
+@media (max-width: 900px) {
+    .header {
+        height: 72px;
+        padding: 0 16px;
+    }
+
+    .header img {
+        height: 54px;
+    }
+}
