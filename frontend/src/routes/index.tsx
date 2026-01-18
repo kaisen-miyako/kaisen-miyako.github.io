@@ -113,7 +113,15 @@ function RouteComponent() {
         />
         <h1
           className={styles.title}
-          style={{ position: "relative", zIndex: 2 }}
+          style={{
+            position: "relative",
+            zIndex: 2,
+            whiteSpace: "nowrap",
+            fontSize: isPc ? undefined : "35px",
+            letterSpacing: isPc ? undefined : "0.08em",
+            padding: isPc ? undefined : "6px 8px",
+            bottom: isPc ? undefined : "-80px",
+          }}
         >
           海鮮みやこ
         </h1>
@@ -126,7 +134,7 @@ function RouteComponent() {
         <p className={styles.introText}>
           <span
             style={{
-              fontSize: "1.25em",
+              fontSize: isPc ? "1.25em" : "1.05em",
               fontWeight: "bold",
               color: "#bfa76f",
               letterSpacing: "0.08em",
@@ -135,7 +143,9 @@ function RouteComponent() {
             究極の穴子と旬の海鮮を、上質な和空間で味わう贅沢。
           </span>
           <br />
-          <span style={{ fontSize: "1.1em", color: "#4c3a1e" }}>
+          <span
+            style={{ fontSize: isPc ? "1.1em" : "0.85em", color: "#4c3a1e" }}
+          >
             熟練の職人が手間暇かけて仕上げる逸品料理。木の温もりが感じられる店内で、心地よいひとときをお過ごしください。
           </span>
         </p>
