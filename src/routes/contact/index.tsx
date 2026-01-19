@@ -22,10 +22,10 @@ function RouteComponent() {
           <br />
           お電話（
           <a
-            href="tel:050-5385-5209"
+            href="tel:03-6801-8360"
             style={{ color: "#bfa76f", fontWeight: "bold" }}
           >
-            050-5385-5209
+            03-6801-8360
           </a>
           ）でも承ります。
         </p>

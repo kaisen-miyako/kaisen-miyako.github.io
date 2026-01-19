@@ -63,7 +63,7 @@ function RouteComponent() {
   // 要素が画面に入ったときにアニメーションを付与する
   useEffect(() => {
     const els = Array.from(
-      document.querySelectorAll('[data-animate="feature"]')
+      document.querySelectorAll('[data-animate="feature"]'),
     ) as HTMLElement[];
     if (!els.length) return;
 
@@ -77,7 +77,7 @@ function RouteComponent() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     els.forEach((el) => observer.observe(el));
@@ -255,7 +255,7 @@ function RouteComponent() {
             <strong>住所：</strong>東京都文京区本郷2-4-5 パティオ本郷 102
           </div>
           <div style={{ color: "#222" }}>
-            <strong>電話：</strong>050-5385-5209
+            <strong>電話：</strong>03-6801-8360
           </div>
           <div style={{ color: "#222" }}>
             <strong>営業時間：</strong>ランチ 11:00～14:30／ディナー
