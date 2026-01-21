@@ -15,7 +15,7 @@ const galleryImages = Object.values(
   import.meta.glob("../../imgs/menu/**/*.{jpg,JPG,png,PNG}", {
     eager: true,
     import: "default",
-  })
+  }),
 );
 import wholebackground from "../../imgs/wholebackground.png";
 import styles from "../index.module.scss";
@@ -80,39 +80,6 @@ function RouteComponent() {
                 }}
               >
                 上 2,600円　極 3,100円
-              </div>
-            </div>
-          </li>
-          <li className={styles.menuItem}>
-            <img
-              src={menu2}
-              alt="お手頃コース（写真）"
-              className={styles.menuItemImg}
-            />
-            <div
-              className={styles.menuItemDesc}
-              style={{ textAlign: "left", fontSize: "1.05em", lineHeight: 1.6 }}
-            >
-              <div
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  marginBottom: 6,
-                }}
-              >
-                <strong>お手頃海鮮コース</strong>
-              </div>
-              <div style={{ display: "block", marginTop: 8 }}>
-                新鮮な海の幸を気軽に楽しめる全6品前後のコース。初めての方や軽めに楽しみたい方におすすめです。
-              </div>
-              <div
-                style={{
-                  textAlign: "center",
-                  marginTop: 8,
-                  fontWeight: "bold",
-                }}
-              >
-                5,500円
               </div>
             </div>
           </li>
