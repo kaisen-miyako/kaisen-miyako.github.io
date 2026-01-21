@@ -130,7 +130,10 @@ function RouteComponent() {
       <div className={styles.rotatedBg}>
         <img src={wholebackground} alt="背景" />
       </div>
-      <div className={styles.introBox}>
+      <div
+        className={styles.introBox}
+        style={isPc ? undefined : { paddingTop: "100px" }}
+      >
         <p className={styles.introText}>
           <span
             style={{
